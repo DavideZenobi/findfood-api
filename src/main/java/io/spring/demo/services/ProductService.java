@@ -35,50 +35,5 @@ public class ProductService {
         List<Product> products = productRepository.findFiveRandom();
         return products;
     }
-
-    //Returns the products with the lowest price among all shops given a name
-    public List<Product> getProductsWithPriceByName(String name) {
-        List<Product> products = productRepository.findByNameContains(name);
-
-        for (Product product : products) {
-            Float price = shopProductRepository.getLowestPriceByProductId(product.getId());
-            if (price != null) {
-                product.setPrice(price);
-            }
-        }
-
-        return products;
-    }
-
-    //
-    public List<Product> getProductsWithPriceAndShopsCountByName(String name) {
-        List<Product> products = productRepository.findByNameContains(name);
-
-        for (Product product : products) {
-            Float price = shopProductRepository.getLowestPriceByProductId(product.getId());
-            if (price != null) {
-                product.setPrice(price);
-            }
-
-            product.setShopsCount(shopProductRepository.getShopsCountByProductId(product.getId()));
-        }
-
-        return products;
-    }
-
-    //Return five random products with the lowest price among all shops
-    public List<Product> getFiveRandomProductsWithPrice() {
-        List<Product> products = productRepository.findFiveRandom();
-
-        for (Product product : products) {
-            Float price = shopProductRepository.getLowestPriceByProductId(product.getId());
-            if (price != null) {
-                product.setPrice(price);
-            }
-
-            product.setShopsCount(shopProductRepository.getShopsCountByProductId(product.getId()));
-        }
-
-        return products;
-    }
+    
 }

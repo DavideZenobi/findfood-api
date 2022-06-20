@@ -32,14 +32,14 @@ public class ProductController {
     }
 
     @GetMapping(path = "/productsWithPrice", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Product> getProductsWithPriceByName(@RequestParam(name = "input") String name) {
-        List<Product> products = advancedService.getProductsWithPriceAndShopsCountByName(name);
+    public List<Product> getProductsByName(@RequestParam(name = "input") String name) {
+        List<Product> products = advancedService.getProductsByName(name);
         return products;
     }
 
     @GetMapping(path = "/random")
-    public List<Product> getRandomProductsWithPrice() {
-        List<Product> randomProducts = advancedService.getRandomProductsWithPriceAndShopsCount();
+    public List<Product> getRandomProducts() {
+        List<Product> randomProducts = advancedService.getRandomProducts();
         return randomProducts;
     }
 

@@ -1,6 +1,7 @@
 package io.spring.demo.controllers;
 
 import io.spring.demo.models.Shop;
+import io.spring.demo.models.ShopsListCount;
 import io.spring.demo.services.AdvancedService;
 import io.spring.demo.services.ShopService;
 
@@ -24,15 +25,9 @@ public class ShopController {
         this.advancedService = advancedService;
     }
 
-    @GetMapping(path = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Shop> searchShops() {
-        List<Shop> shops = shopService.findAll();
-        return shops;
-    }
-
-    @GetMapping(path = "/shopsByProductId")
-    public List<Shop> getShopsByProductId(@RequestParam(name = "productId") int productId) {
-        List<Shop> shops = advancedService.getShopsWithPriceByProductId(productId);
+    @GetMapping(path = "/search")
+    public ShopsListCount getShopsByProductId(@RequestParam int productId, @RequestParam int page) {
+        ShopsListCount shops = advancedService.getShopsByProductId(productId, page);
         return shops;
     }
 

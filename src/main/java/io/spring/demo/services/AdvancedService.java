@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import io.spring.demo.models.Product;
 import io.spring.demo.models.Shop;
+import io.spring.demo.models.ShopsListCount;
 
 @Service
 public class AdvancedService {
@@ -25,7 +26,7 @@ public class AdvancedService {
     }
 
     //Only for autocomplete purposes
-    public List<Product> getProductsWithPriceAndShopsCountByName(String name) {
+    public List<Product> getProductsByName(String name) {
         List<Product> products = productService.getProductsByNameContains(name);
 
         for (Product product : products) {
@@ -42,7 +43,7 @@ public class AdvancedService {
     }
 
     //Return products with lowest price and how many shops are selling it
-    public List<Product> getRandomProductsWithPriceAndShopsCount() {
+    public List<Product> getRandomProducts() {
         List<Product> products = productService.getRandomProducts();
 
         for (Product product : products) {
@@ -58,16 +59,19 @@ public class AdvancedService {
         return products;
     }
 
-    //
-    public List<Shop> getShopsWithPriceByProductId(int productId) {
+    public ShopsListCount getShopsByProductId(int productId, int page) {
+        ShopsListCount shopsList = new ShopsListCount();
         List<String> nifs = shopProductService.getNifsByProductId(productId);
-        List<Shop> shops = shopService.getShopsByNifs(nifs);
+        List<Shop> shops = shopService.getShopsByNifs(nifs, page);
 
         for (Shop shop : shops) {
             Float price = shopProductService.getPriceByNifAndProductId(shop.getNif(), productId);
             shop.setPrice(price);
         }
+        shopsList.setShops(shops);
+        shopsList.setShopsCount(shops.size());
 
-        return shops;
+        return shopsList;
     }
+
 }
