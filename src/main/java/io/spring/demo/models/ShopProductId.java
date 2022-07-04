@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 public class ShopProductId implements Serializable {
     
-    private String nifShop;
+    private String idShop;
     private int idProduct;
 
-    public String getNifShop() {
-        return nifShop;
+    public String getIdShop() {
+        return idShop;
     }
-    public void setNifShop(String nifShop) {
-        this.nifShop = nifShop;
+    public void setIdShop(String idShop) {
+        this.idShop = idShop;
     }
     public int getIdProduct() {
         return idProduct;

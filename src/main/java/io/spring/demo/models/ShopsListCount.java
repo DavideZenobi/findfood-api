@@ -5,7 +5,7 @@ import java.util.List;
 public class ShopsListCount {
 
     private List<Shop> shops;
-    private int shopsCount;
+    private Long shopsCount;
     
     public List<Shop> getShops() {
         return shops;
@@ -13,10 +13,10 @@ public class ShopsListCount {
     public void setShops(List<Shop> shops) {
         this.shops = shops;
     }
-    public int getShopsCount() {
+    public Long getShopsCount() {
         return shopsCount;
     }
-    public void setShopsCount(int shopsCount) {
+    public void setShopsCount(Long shopsCount) {
         this.shopsCount = shopsCount;
     }
     

@@ -14,8 +14,8 @@ import javax.persistence.Table;
 public class ShopProduct implements Serializable {
     
     @Id
-    @Column(name = "nif_shop")
-    private String nifShop;
+    @Column(name = "id_shop")
+    private String idShop;
 
     @Id
     @Column(name = "id_product")
@@ -24,12 +24,12 @@ public class ShopProduct implements Serializable {
     @Column(name = "price")
     private Float price;
 
-    public String getNifShop() {
-        return nifShop;
+    public String getIdShop() {
+        return idShop;
     }
 
-    public void setNifShop(String nifShop) {
-        this.nifShop = nifShop;
+    public void setIdShop(String idShop) {
+        this.idShop = idShop;
     }
 
     public int getIdProduct() {

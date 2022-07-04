@@ -3,6 +3,7 @@ package io.spring.demo.services;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import io.spring.demo.models.Product;
 import io.spring.demo.repositories.ProductRepository;
@@ -34,6 +35,14 @@ public class ProductService {
     public List<Product> getRandomProducts() {
         List<Product> products = productRepository.findFiveRandom();
         return products;
+    }
+
+    @Transactional
+    public int addView(int productId) {
+        int timesVisited = productRepository.getViews(productId);
+        timesVisited = timesVisited + 1;
+        int isOk = productRepository.addView(productId, timesVisited);
+        return isOk;
     }
     
 }

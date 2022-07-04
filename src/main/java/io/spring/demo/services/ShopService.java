@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,16 +20,30 @@ public class ShopService {
         this.shopRepository = shopRepository;
     }
 
-    public Shop getShopByNif(String nif) {
-        Shop shop = shopRepository.getByNif(nif);
+    public Shop getShopById(String id) {
+        Shop shop = shopRepository.getById(id);
         return shop;
     }
 
-    public List<Shop> getShopsByNifs(List<String> nifs, int page) { 
-        int size = 10;
-        Page<Shop> shops = shopRepository.getByNifs(nifs, PageRequest.of(page, size));
+    public Page<Shop> getShopsByIds(List<String> ids, int page) { 
+        int size = 5;
+        Pageable pageable = PageRequest.of(page - 1, size);
+        Page<Shop> shops = shopRepository.getByIds(ids, pageable);
 
         return shops;
+    }
+
+    public Shop saveShop(Shop shop) {
+        Shop shopCreated = shopRepository.save(shop);
+        return shopCreated;
+    }
+
+    public boolean checkIfShopExist(String id) {
+        if(shopRepository.checkId(id) == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

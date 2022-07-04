@@ -7,6 +7,8 @@ import io.spring.demo.services.ProductService;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,15 +27,21 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping(path = "/single", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Product getProductById(@RequestParam(name = "input") int id) {
-        Product product = productService.getProductById(id);
+    @GetMapping(path = "/{productId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Product getProductById(@PathVariable int productId) {
+        Product product = productService.getProductById(productId);
         return product;
     }
 
-    @GetMapping(path = "/productsWithPrice", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Product> getProductsByName(@RequestParam(name = "input") String name) {
-        List<Product> products = advancedService.getProductsByName(name);
+    @GetMapping(path = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Product> getProductsByText(@RequestParam String text) {
+        List<Product> products = advancedService.getProductsByName(text);
+        return products;
+    }
+
+    @GetMapping(path = "/V2", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Product> getProductsByTextV2(@RequestParam String text) {
+        List<Product> products = productService.getProductsByNameContains(text);
         return products;
     }
 
@@ -41,6 +49,12 @@ public class ProductController {
     public List<Product> getRandomProducts() {
         List<Product> randomProducts = advancedService.getRandomProducts();
         return randomProducts;
+    }
+
+    @PutMapping(path = "/{productId}/view")
+    public int addView(@PathVariable int productId) {
+        int isOk = productService.addView(productId);
+        return isOk;
     }
 
 }

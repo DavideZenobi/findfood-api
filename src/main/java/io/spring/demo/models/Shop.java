@@ -1,9 +1,9 @@
 package io.spring.demo.models;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -13,9 +13,8 @@ import javax.persistence.Transient;
 public class Shop {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "nif")
-    private String nif;
+    @Column(name = "id")
+    private String id;
 
     @Column(name = "name")
     private String name;
@@ -32,14 +31,20 @@ public class Shop {
     @Column(name = "municipality")
     private String municipality;
 
+    @Column(name = "status")
+    private boolean status;
+
+    @Column(name = "date_created")
+    private LocalDateTime dateCreated;
+
     @Transient
     private Float price;
 
-    public String getNif() {
-        return nif;
+    public String getId() {
+        return id;
     }
-    public void setNif(String nif) {
-        this.nif = nif;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -88,6 +93,18 @@ public class Shop {
     
     public void setPrice(Float price) {
         this.price = price;
+    }
+    public boolean isStatus() {
+        return status;
+    }
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    public LocalDateTime getDateCreated() {
+        return dateCreated;
+    }
+    public void setDateCreated(LocalDateTime dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
     

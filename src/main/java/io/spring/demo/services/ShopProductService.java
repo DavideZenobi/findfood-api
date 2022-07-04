@@ -25,13 +25,13 @@ public class ShopProductService {
         return shopsCount;
     }
 
-    public List<String> getNifsByProductId(int productId) {
-        List<String> nifs = shopProductRepository.getNifsByProductId(productId);
-        return nifs;
+    public List<String> getIdsByProductId(int productId) {
+        List<String> ids = shopProductRepository.getIdsByProductId(productId);
+        return ids;
     }
 
-    public Float getPriceByNifAndProductId(String nif, int productId) {
-        Float price = shopProductRepository.getPriceByNifAndProductId(nif, productId);
+    public Float getPriceByIdAndProductId(String id, int productId) {
+        Float price = shopProductRepository.getPriceByIdAndProductId(id, productId);
         return price;
     }
     
