@@ -19,6 +19,11 @@ public class UserService {
         return user;
     }
 
+    public User getUserByEmail(String email) {
+        User user = userRepository.getUserByEmail(email);
+        return user;
+    }
+
     public User saveUser(User user) {
         User userCreated = userRepository.save(user);
         return userCreated;

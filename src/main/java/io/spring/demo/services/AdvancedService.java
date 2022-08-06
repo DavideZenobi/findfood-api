@@ -116,7 +116,7 @@ public class AdvancedService {
         shop.setDateCreated(LocalDateTime.now());
         shopService.saveShop(shop);
 
-        applicationEventPublisher.publishEvent(new OnRegistrationEvent(userCreated));
+        //applicationEventPublisher.publishEvent(new OnRegistrationEvent(userCreated));
         
     }
 
