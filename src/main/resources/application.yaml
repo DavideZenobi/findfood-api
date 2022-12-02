@@ -3,12 +3,12 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/findfood
     username: root
-    password: 1298DZGS
+    password: root
   mail:
     host: smtp.gmail.com
     port: 587
-    username: davidezenobidev@gmail.com
-    password: uxczynhspvjkoqzq
+    username: root
+    password: root
     properties:
       mail:
         smtp:
